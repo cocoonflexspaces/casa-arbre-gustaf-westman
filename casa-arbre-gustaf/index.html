@@ -214,7 +214,35 @@
   }
   .photo.tall img { aspect-ratio: 3/4; }
   .photo.square img { aspect-ratio: 1/1; }
-  .photo.wide img { aspect-ratio: 16/9; }
+  .photo.wide img { aspect-ratio: 2/1; }
+  .photo.cinematic img { aspect-ratio: 21/9; }
+
+  /* HERO TREATMENTS — full bleed, dramatic scale */
+  .photo.bleed {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .photo.bleed img {
+    aspect-ratio: 2.4/1;
+    max-height: 90vh;
+  }
+  .photo.bleed.tall img {
+    aspect-ratio: auto;
+    height: 92vh;
+    max-height: none;
+  }
+  .photo.hero img {
+    aspect-ratio: auto;
+    min-height: 70vh;
+    object-fit: cover;
+  }
+  @media (max-width: 900px) {
+    .photo.bleed img { aspect-ratio: 4/3; max-height: 70vh; }
+    .photo.bleed.tall img { height: 60vh; }
+    .photo.hero img { min-height: 50vh; }
+  }
 
   .photo-grid {
     display: grid;
@@ -250,6 +278,23 @@
     letter-spacing: 0.16em;
     font-size: 12px;
     color: var(--ink-soft);
+  }
+
+  /* CUSTOMIZATION — what's yours to shape */
+  .shape-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+  }
+  .shape-grid h3 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  @media (max-width: 900px) {
+    .shape-grid { grid-template-columns: 1fr; gap: 40px; }
   }
 
   /* GUSTAF SHOWCASE — dedicated furniture moment */
@@ -457,6 +502,8 @@
     font-weight: 700;
     letter-spacing: -0.012em;
     margin: 0 0 8px;
+    min-height: 2.4em;     /* Reserve 2 lines so prices align across cards */
+    line-height: 1.2;
   }
   .price-card .price {
     font-size: 40px;
@@ -673,9 +720,12 @@
         </div>
       </div>
       <div class="photo wide">
-        <img src="img/arbre/exterior-brick-facade-reforesters-lab-sign.jpg" alt="147 Metropolitan Avenue exterior brick facade with Reforesters Lab signage" />
+        <img src="img/arbre/exterior-brick-facade-reforesters-lab-sign.jpg" alt="147 Metropolitan Avenue Reforesters Lab signage detail" />
       </div>
     </div>
+  </div>
+  <div class="photo bleed" style="margin-top: 80px;">
+    <img src="img/arbre/exterior-brick-facade-horizontal.jpg" alt="147 Metropolitan Avenue full storefront on the Williamsburg block" />
   </div>
 </section>
 
@@ -757,7 +807,7 @@
     </div>
   </div>
 
-  <div class="photo wide" style="margin-top: 24px;">
+  <div class="photo bleed" style="margin-top: 56px;">
     <img src="img/arbre/coffee-bar-access-events-room.jpg" alt="Café bar with view through to listening room" />
   </div>
 </section>
@@ -784,9 +834,20 @@
       <div class="photo"><img src="img/arbre/events-room-wooden-stools.jpg" alt="Listening room with wooden stools and seating" /></div>
     </div>
 
-    <div class="photo wide" style="margin-top: 24px;">
-      <img src="img/arbre/patio-plants-chairs.jpg" alt="Indoor garden patio plants and chairs behind the listening room" />
+    <div style="margin-top: 56px; max-width: 760px;">
+      <div class="superhead">And through, to the back garden</div>
+      <p class="lede" style="margin-top: 10px;">Behind the listening room, a small planted garden you can spill into during warmer hours — a fourth room that doesn't always get used, but it's there for you.</p>
     </div>
+
+    <div class="photo-grid three" style="margin-top: 24px;">
+      <div class="photo"><img src="img/arbre/events-room-layered-rugs-access-patio.jpg" alt="Listening room layered rugs with view through to the back garden" /></div>
+      <div class="photo"><img src="img/arbre/patio-plants.jpg" alt="Back garden planted with a wider view" /></div>
+      <div class="photo tall"><img src="img/arbre/patio-gardening-box.jpg" alt="Back garden gardening box and planting beds" /></div>
+    </div>
+
+  </div>
+  <div class="photo bleed" style="margin-top: 24px;">
+    <img src="img/arbre/patio-plants-chairs.jpg" alt="Back garden seating among planted beds" />
   </div>
 </section>
 
@@ -812,8 +873,45 @@
     <div class="photo"><img src="img/apartment/bathroom-tub.jpg" alt="Master bath with tub" /></div>
   </div>
 
-  <div class="photo wide" style="margin-top: 24px;">
+  <div class="photo bleed" style="margin-top: 56px;">
     <img src="img/apartment/kitchen-detail.jpg" alt="Kitchen with terracotta tiles" />
+  </div>
+</section>
+
+<!-- WHAT'S YOURS TO SHAPE — customization section -->
+<section>
+  <div class="two-col" style="grid-template-columns: 1.4fr 1fr; align-items: end; gap: clamp(40px, 6vw, 80px);">
+    <div>
+      <div class="superhead">What's yours to shape</div>
+      <h2 class="title" style="font-size: clamp(36px, 5vw, 56px); margin: 14px 0 12px;">Casa Arbre is built to come apart and put itself back together for you.</h2>
+      <p class="lede" style="max-width: 620px;">Three things specifically that other Cocoon spaces can't always do — and that change what's actually possible for a Gustaf Westman pop-up.</p>
+    </div>
+    <div class="photo tall"><img src="img/arbre/exterior-brick-facade-vertical.jpg" alt="147 Metropolitan Avenue full facade — your canvas" /></div>
+  </div>
+
+  <div class="shape-grid">
+
+    <div>
+      <div class="caption" style="color: var(--terracotta); margin-bottom: 14px;">01 · Furniture</div>
+      <h3>The existing furniture clears out.</h3>
+      <p class="body" style="font-size: 15px; line-height: 1.55;">Casa Arbre has a basement we can move every piece of existing furniture into for the week. The café tables, the booth, the listening-room rugs and stools, the apartment dining setup — all of it stages off-site so your pieces are the only pieces in the room.</p>
+      <p class="body" style="font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin-top: 12px;">Furniture handling fee applies — billed separately based on scope, quoted with the booking.</p>
+    </div>
+
+    <div>
+      <div class="caption" style="color: var(--terracotta); margin-bottom: 14px;">02 · Facade</div>
+      <h3>The exterior is yours to brand.</h3>
+      <p class="body" style="font-size: 15px; line-height: 1.55;">Fully customizable: a flag with your wordmark, vinyl on the storefront glass, hanging signage, painted door, sandwich board on the sidewalk — anything that holds up to a Williamsburg block in November. The brick stays brick. Everything else can move.</p>
+      <p class="body" style="font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin-top: 12px;">Production handled by your team or by Cocoon's signage partner — we'll walk you through both paths.</p>
+    </div>
+
+    <div>
+      <div class="caption" style="color: var(--terracotta); margin-bottom: 14px;">03 · Access</div>
+      <h3>Two doors. Two flows.</h3>
+      <p class="body" style="font-size: 15px; line-height: 1.55;">147 Metropolitan has two separate street-level entries: the café doors (organic walk-in foot traffic, the busiest entry) and the apartment door (a private guest-style flow up to the residential floor). You can route audiences through one, the other, or both — different routing per day if you want.</p>
+      <p class="body" style="font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin-top: 12px;">Useful for press days, private dinners, or VIP previews that don't share the front line with public foot traffic.</p>
+    </div>
+
   </div>
 </section>
 
