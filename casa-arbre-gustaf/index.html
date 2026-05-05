@@ -120,15 +120,15 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(245, 242, 232, 0.9);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(245, 242, 232, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
   .topbar-inner {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 16px clamp(24px, 5vw, 80px);
+    padding: 14px clamp(24px, 5vw, 80px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -137,17 +137,46 @@
   .topbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: -0.01em;
+    gap: 0;
+    font-size: 13px;
+    letter-spacing: 0;
   }
-  .topbar-brand .x { color: var(--terracotta); margin: 0 8px; font-weight: 500; }
-  .topbar-meta {
-    font-size: 12px;
+  .topbar-brand .cocoon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 18px;
+  }
+  .topbar-brand .cocoon img.logomark {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+  }
+  .topbar-brand .cocoon img.wordmark {
+    height: 16px;
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .topbar-brand .divider {
+    width: 1px;
+    height: 22px;
+    background: var(--rule);
+    flex: 0 0 auto;
+  }
+  .topbar-brand .partner {
+    padding-left: 18px;
+    font-weight: 600;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
+    color: var(--ink);
+  }
+  .topbar-meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
     color: var(--ink-soft);
+    font-weight: 600;
   }
 
   /* COVER */
@@ -499,6 +528,11 @@
     font-size: 15px;
     line-height: 1.55;
   }
+  /* Inverted .walk inside dark-teal sections — keep all text readable on the dark background */
+  .deepteal .walk .step { border-top-color: var(--cream); }
+  .deepteal .walk .step .step-num { color: var(--terracotta-soft); }
+  .deepteal .walk .step h4 { color: var(--cream); }
+  .deepteal .walk .step p { color: rgba(245, 242, 232, 0.82); }
 
   /* PRICING */
   .pricing {
@@ -693,12 +727,14 @@
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-brand">
-      <img src="img/cocoon/mark-128.png" alt="Cocoon" class="logomark" />
-      <img src="img/cocoon/wordmark-320.png" alt="cocoon" class="wordmark" />
-      <span class="x">×</span>
-      <span>Gustaf Westman</span>
+      <span class="cocoon">
+        <img src="img/cocoon/mark-128.png" alt="Cocoon" class="logomark" />
+        <img src="img/cocoon/wordmark-320.png" alt="cocoon" class="wordmark" />
+      </span>
+      <span class="divider" aria-hidden="true"></span>
+      <span class="partner">Gustaf Westman</span>
     </div>
-    <div class="topbar-meta">A 7-day pop-up proposal · November 2026</div>
+    <div class="topbar-meta">A 7-day pop-up · November 2026</div>
   </div>
 </header>
 
@@ -707,7 +743,6 @@
   <div class="cover-grid">
     <div class="cover-text">
       <div>
-        <img src="img/cocoon/lockup-256.png" alt="Cocoon" class="lockup" style="margin-bottom: 28px;" />
         <div class="superhead">A pop-up proposal from Cocoon</div>
         <h1 class="title" style="margin-top:18px;">Casa Arbre.<br/>Williamsburg.<br/><span style="color:var(--terracotta)">Seven days.</span></h1>
         <p class="lede" style="margin-top:32px; max-width: 460px;">A working café, a 26-channel listening room with an indoor garden, and a residential loft above — three rooms, one venue, your seven-day takeover.</p>
