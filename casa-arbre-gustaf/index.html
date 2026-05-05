@@ -195,10 +195,22 @@
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
-    gap: clamp(40px, 6vw, 100px);
+    gap: clamp(40px, 6vw, 96px);
     align-items: start;
   }
   .two-col.media-first { grid-template-columns: 1.4fr 1fr; }
+  .two-col.balanced { grid-template-columns: 1fr 1fr; }
+  .two-col.equal-height { align-items: stretch; }
+  .two-col.equal-height .photo,
+  .two-col.equal-height .photo img,
+  .two-col.equal-height .photo-grid {
+    height: 100%;
+  }
+  .two-col.equal-height .photo img {
+    aspect-ratio: auto;
+    object-fit: cover;
+    width: 100%;
+  }
 
   /* PHOTO CARDS / FRAMES */
   .photo {
@@ -246,16 +258,47 @@
 
   .photo-grid {
     display: grid;
-    gap: 16px;
+    gap: 18px;
   }
   .photo-grid.two { grid-template-columns: 1fr 1fr; }
   .photo-grid.three { grid-template-columns: repeat(3, 1fr); }
+
+  /* EDITORIAL ASYMM — hero portrait + 2 supporting landscapes, cells filled by image */
   .photo-grid.asymm {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.6fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 16px;
+    gap: 18px;
   }
   .photo-grid.asymm > :nth-child(1) { grid-row: 1 / 3; }
+  .photo-grid.asymm .photo { height: 100%; }
+  .photo-grid.asymm .photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  /* EDITORIAL TWO-COL — hero landscape + small supporting tall, cells fill */
+  .photo-grid.editorial {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 18px;
+  }
+  .photo-grid.editorial .photo { height: 100%; }
+  .photo-grid.editorial .photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+  .photo-grid.editorial .photo:first-child img { aspect-ratio: 4/5; }
+
+  /* CONSISTENT-ASPECT TRIPTYCH — all 3 same shape regardless of natural aspect */
+  .photo-grid.three.uniform .photo img {
+    aspect-ratio: 4/5;
+  }
+  .photo-grid.three.uniform-wide .photo img {
+    aspect-ratio: 3/2;
+  }
 
   /* NUMBERED ZONE LABEL */
   .zone-num {
@@ -574,13 +617,23 @@
   /* MAP / ADDRESS BLOCK */
   .map-block {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: 1fr 1.4fr;
     gap: 40px;
     align-items: stretch;
+    min-height: 460px;
+  }
+  .map-block .photo,
+  .map-block .photo img {
+    height: 100%;
+  }
+  .map-block .photo img {
+    width: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
   }
   .address {
     background: var(--cream-deep);
-    padding: 32px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -794,7 +847,7 @@
 <!-- ZONE 1 — THE CAFÉ -->
 <section>
   <div class="zone-num"><span class="n">01</span> <span class="label">The Café · Commercial showcase</span></div>
-  <div class="two-col" style="margin-top: 18px;">
+  <div class="two-col equal-height" style="margin-top: 32px;">
     <div>
       <h2 class="headline">A working coffee shop. Your work in everyday commercial life.</h2>
       <p class="body">The front of Casa Arbre runs as Reforesters Laboratory — an experimental adaptogen café that's already a daily ritual for Williamsburg locals. During the pop-up, the café keeps operating (Option A &amp; B): visitors come in for coffee, encounter your work in commercial use, and leave knowing your name. That's the most authentic discovery moment a designer can engineer.</p>
@@ -816,7 +869,7 @@
 <section style="background: var(--cream-deep); max-width: none; padding-left: 0; padding-right: 0;">
   <div style="max-width: var(--max); margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px);">
     <div class="zone-num"><span class="n">02</span> <span class="label">The Listening Room · Experiential showcase</span></div>
-    <div class="two-col media-first" style="margin-top: 18px;">
+    <div class="two-col media-first equal-height" style="margin-top: 32px;">
       <div class="photo-grid two">
         <div class="photo tall"><img src="img/arbre/events-room-altar.jpg" alt="Listening room with altar, layered rugs and spatial audio system" /></div>
         <div class="photo tall"><img src="img/arbre/events-room-plant-wall.jpg" alt="Listening room indoor garden plant wall" /></div>
@@ -834,19 +887,23 @@
       <div class="photo"><img src="img/arbre/events-room-wooden-stools.jpg" alt="Listening room with wooden stools and seating" /></div>
     </div>
 
-    <div style="margin-top: 56px; max-width: 760px;">
-      <div class="superhead">And through, to the back garden</div>
-      <p class="lede" style="margin-top: 10px;">Behind the listening room, a small planted garden you can spill into during warmer hours — a fourth room that doesn't always get used, but it's there for you.</p>
-    </div>
-
-    <div class="photo-grid three" style="margin-top: 24px;">
-      <div class="photo"><img src="img/arbre/events-room-layered-rugs-access-patio.jpg" alt="Listening room layered rugs with view through to the back garden" /></div>
-      <div class="photo"><img src="img/arbre/patio-plants.jpg" alt="Back garden planted with a wider view" /></div>
-      <div class="photo tall"><img src="img/arbre/patio-gardening-box.jpg" alt="Back garden gardening box and planting beds" /></div>
+    <div style="margin-top: 88px;">
+      <div class="two-col" style="grid-template-columns: 1fr 1.6fr; gap: clamp(40px, 6vw, 80px);">
+        <div>
+          <div class="superhead">And through, to the back garden</div>
+          <h3 style="font-size: clamp(24px, 2.5vw, 32px); font-weight: 500; line-height: 1.2; letter-spacing: -0.012em; margin: 14px 0 18px;">A planted garden you can spill into during warmer hours.</h3>
+          <p class="body" style="color: var(--ink-soft);">A fourth room that doesn't always get used, but it's there for you — through the listening room and out the back. Garden box, layered planting, two chairs in the sun.</p>
+        </div>
+        <div class="photo-grid asymm">
+          <div class="photo"><img src="img/arbre/patio-gardening-box.jpg" alt="Back garden gardening box and planting beds" /></div>
+          <div class="photo"><img src="img/arbre/events-room-layered-rugs-access-patio.jpg" alt="Listening room with view through to the back garden" /></div>
+          <div class="photo"><img src="img/arbre/patio-plants.jpg" alt="Back garden planted with a wider view" /></div>
+        </div>
+      </div>
     </div>
 
   </div>
-  <div class="photo bleed" style="margin-top: 24px;">
+  <div class="photo bleed" style="margin-top: 56px;">
     <img src="img/arbre/patio-plants-chairs.jpg" alt="Back garden seating among planted beds" />
   </div>
 </section>
@@ -854,7 +911,7 @@
 <!-- ZONE 3 — THE RESIDENCE -->
 <section>
   <div class="zone-num"><span class="n">03</span> <span class="label">The Residence · Lifestyle showcase</span></div>
-  <div class="two-col" style="margin-top: 18px;">
+  <div class="two-col equal-height" style="margin-top: 32px;">
     <div>
       <h2 class="headline">Above the café and the listening room, the residential loft.</h2>
       <p class="body">The top floor is a fully restored apartment with an open layout — kitchen, dining, double-height living — attic-style bedrooms with dormer light, a master bath, and a rear garden you reach through a back door. It's the answer to the question every retail visitor secretly asks: <em>what does this actually look like in someone's home?</em></p>
